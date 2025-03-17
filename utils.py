@@ -1,4 +1,4 @@
-def orchestrator(price,priceDecimals):
+def orchestrator(price,priceDecimals,title):
     priceConcat =  price + priceDecimals
     priceFloat = float(priceConcat)
 
