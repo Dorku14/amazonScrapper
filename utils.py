@@ -18,14 +18,14 @@ def scrapOtherVendorsSection(driver:webdriver,url:str,precioInteres:float,tieneP
             EC.element_to_be_clickable((By.CSS_SELECTOR, "#buybox-see-all-buying-choices .a-button-inner"))
         ).click()
 
-        elementos = WebDriverWait(driver, 2).until(
+        elementos = WebDriverWait(driver, 5).until(
             EC.presence_of_all_elements_located((By.CSS_SELECTOR, "#aod-offer"))
         )
         titulo = driver.find_element(By.CSS_SELECTOR, "#productTitle")
         print(titulo.text)
+        mensajeLocal += "\n "
+        mensajeLocal += f'<u><a href="{url}">{titulo.text}</a></u>'
         for elemento in elementos:
-            mensajeLocal += "\n "
-            mensajeLocal += f'<u><a href="{url}">{titulo.text}</a></u>'
             precio = elemento.find_element(By.CSS_SELECTOR,'#aod-offer .a-price-whole').text
             vendidoPor = elemento.find_element(By.CSS_SELECTOR,'#aod-offer #aod-offer-soldBy').text
             enviadoPor = elemento.find_element(By.CSS_SELECTOR,'#aod-offer #aod-offer-shipsFrom').text
@@ -66,7 +66,7 @@ def scrapOtherCompareSection(driver:webdriver,url:str,precioInteres:float,tieneP
     mensajeLocal = ""
     encontroPrecioInteres = False
     try:
-        vendorSection = WebDriverWait(driver, 2).until(
+        vendorSection = WebDriverWait(driver, 5).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, "#corePriceDisplay_desktop_feature_div .a-price-whole"))
         ).click()
         
