@@ -9,11 +9,12 @@ response = requests.get(url)
 
 soup = BeautifulSoup(response.text, 'lxml')
 
+title_element =  soup.select_one('#productTitle')
 price_element =  soup.select_one('.a-price-whole')
 price_e_decimals =  soup.select_one('.a-price-fraction')
 
-if price_element is not None and price_e_decimals is not None:
-    utils.orchestrator(price_element.text,price_e_decimals.text)
+if price_element is not None and price_e_decimals is not None and title_element is not None:
+    utils.orchestrator(price_element.text,price_e_decimals.text,title_element.text)
 else :
     error.writeLog()
 
